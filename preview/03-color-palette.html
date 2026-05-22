@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit — Color palette</title>
+  <link rel="stylesheet" href="./shell.css" />
+  <style>
+    .ratio {
+      display: grid;
+      grid-template-columns: 6fr 3fr 1fr;
+      gap: 0;
+      height: 80px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 32px;
+    }
+    .ratio > div {
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 22px;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .ratio .bg  { background: var(--bg-page); color: var(--fg-2); }
+    .ratio .sec { background: var(--bg-dark); color: rgba(255,255,255,0.85); }
+    .ratio .pri { background: var(--fg-accent); color: #fff; padding: 0 14px; }
+    .ratio b { font-family: var(--sans-display); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+
+    .anchors { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px; }
+    .swatch {
+      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      background: var(--bg-surface);
+    }
+    .swatch .chip { height: 130px; }
+    .swatch .meta { padding: 16px 18px 18px; }
+    .swatch .role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .swatch .name { font-family: var(--sans-display); font-weight: 700; font-size: 16px; margin-top: 4px; }
+    .swatch .hex  { font-family: var(--mono); font-size: 12px; color: var(--fg-2); margin-top: 6px; letter-spacing: 0.04em; }
+    .swatch .pct  { font-family: var(--mono); font-size: 10px; color: var(--fg-3); letter-spacing: 0.14em; text-transform: uppercase; margin-top: 4px; }
+
+    .row-h {
+      font-family: var(--mono);
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3);
+      margin: 8px 0 14px;
+    }
+
+    .states { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 28px; }
+    .state {
+      border-radius: 14px; border: 1px solid var(--border-subtle);
+      overflow: hidden; background: var(--bg-surface);
+    }
+    .state .bar { height: 60px; }
+    .state .row { display:flex; justify-content: space-between; align-items: center; padding: 12px 14px; gap: 12px; }
+    .state .row .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-3); }
+    .state .row .h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--fg-1); }
+
+    .grads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grad {
+      height: 96px; border-radius: 14px; padding: 14px 18px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      color: #fff;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    }
+    .g1 { background: linear-gradient(#FF4529, #212121); }
+    .g2 { background: linear-gradient(#FF4529, #B7C8D7); }
+    .g3 { background: linear-gradient(#212121, #B7C8D7); }
+    .g4 { background: radial-gradient(#FF4529, #212121); }
+    .g5 { background: radial-gradient(#FF4529, #B7C8D7); }
+    .g6 { background: radial-gradient(#212121, #B7C8D7); }
+  </style>
+</head>
+<body>
+  <div class="cd-card">
+    <div class="cd-card__kicker"><span class="dot"></span> Foundations · color</div>
+    <h1 class="cd-card__title">Five anchors. Sixty / thirty / ten.</h1>
+    <p class="cd-card__subtitle">Background dominates. Secondary supports. Primary punctuates. Accent stays under five percent — borders, dividers, the dot in a status pill. Pure black is never used.</p>
+
+    <div class="ratio" aria-label="60 / 30 / 10 split">
+      <div class="bg"><b style="color:var(--fg-1)">Background · 60%</b> #FBFBFE</div>
+      <div class="sec"><b>Secondary · 30%</b> #212121</div>
+      <div class="pri"><b>10%</b></div>
+    </div>
+
+    <div class="anchors">
+      <div class="swatch">
+        <div class="chip" style="background:#FBFBFE; border-bottom:1px solid var(--border-subtle);"></div>
+        <div class="meta"><div class="role">Background</div><div class="name">Off-white</div><div class="hex">#FBFBFE</div><div class="pct">60% of layout</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#212121"></div>
+        <div class="meta"><div class="role">Secondary</div><div class="name">Near-black</div><div class="hex">#212121</div><div class="pct">30% of layout</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FF4529"></div>
+        <div class="meta"><div class="role">Primary</div><div class="name">Conduit Orange</div><div class="hex">#FF4529</div><div class="pct">10% punctuation</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#B7C8D7"></div>
+        <div class="meta"><div class="role">Accent · trim</div><div class="name">Cool Steel</div><div class="hex">#B7C8D7</div><div class="pct">&lt; 5% trim</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#040316"></div>
+        <div class="meta"><div class="role">Text</div><div class="name">Ink</div><div class="hex">#040316</div><div class="pct">Body copy</div></div>
+      </div>
+    </div>
+
+    <div class="row-h">Primary · interaction states</div>
+    <div class="states">
+      <div class="state"><div class="bar" style="background:#FF4529"></div><div class="row"><span class="l">Default</span><span class="h">#FF4529</span></div></div>
+      <div class="state"><div class="bar" style="background:#FF5A41"></div><div class="row"><span class="l">Tint / hover top-stop</span><span class="h">#FF5A41</span></div></div>
+      <div class="state"><div class="bar" style="background:#E63E25"></div><div class="row"><span class="l">Hover bottom-stop</span><span class="h">#E63E25</span></div></div>
+      <div class="state"><div class="bar" style="background:#D43820"></div><div class="row"><span class="l">Pressed</span><span class="h">#D43820</span></div></div>
+    </div>
+
+    <div class="row-h">Surfaces & borders</div>
+    <div class="states">
+      <div class="state"><div class="bar" style="background:#FFFFFF; border-bottom:1px solid var(--border-subtle);"></div><div class="row"><span class="l">Card</span><span class="h">#FFFFFF</span></div></div>
+      <div class="state"><div class="bar" style="background:#F4F5F8"></div><div class="row"><span class="l">Card · soft</span><span class="h">#F4F5F8</span></div></div>
+      <div class="state"><div class="bar" style="background:#ECEEF3"></div><div class="row"><span class="l">Card · pressed</span><span class="h">#ECEEF3</span></div></div>
+      <div class="state"><div class="bar" style="background:rgba(183,200,215,0.4); border:1px solid var(--border-default);"></div><div class="row"><span class="l">Border subtle</span><span class="h">#B7C8D7 / 40%</span></div></div>
+    </div>
+
+    <div class="row-h">Gradients · hero & CTA breaks only</div>
+    <div class="grads">
+      <div class="grad g1"><span>Primary → Secondary</span><span>linear</span></div>
+      <div class="grad g2"><span>Primary → Accent</span><span>linear</span></div>
+      <div class="grad g3"><span>Secondary → Accent</span><span>linear</span></div>
+      <div class="grad g4"><span>Primary → Secondary</span><span>radial</span></div>
+      <div class="grad g5"><span>Primary → Accent</span><span>radial</span></div>
+      <div class="grad g6"><span>Secondary → Accent</span><span>radial</span></div>
+    </div>
+
+    <div class="cd-meta">
+      <span><b>5</b> anchors</span>
+      <span><b>60/30/10</b> ratio</span>
+      <span>4 primary states</span>
+      <span>6 gradients · sparingly</span>
+    </div>
+  </div>
+</body>
+</html>

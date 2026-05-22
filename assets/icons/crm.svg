@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-label="CRM setup &amp; automation">
+  <title>CRM setup &amp; automation</title>
+  
+  <rect x="2.25" y="4" width="11.5" height="3.5" rx="1.25"></rect>
+  <rect x="2.25" y="10.25" width="11.5" height="3.5" rx="1.25"></rect>
+  <rect x="2.25" y="16.5" width="11.5" height="3.5" rx="1.25"></rect>
+  <circle cx="5.25" cy="5.75" r="0.9" fill="currentColor" stroke="none"></circle>
+  <circle cx="8" cy="12" r="0.9" fill="currentColor" stroke="none"></circle>
+  <circle cx="11" cy="18.25" r="0.9" fill="currentColor" stroke="none"></circle>
+  
+  <path d="M19 4.5 L16.5 11 H19 L17.5 16.5 L21.5 9.5 H19 Z" stroke-linejoin="round"></path>
+</svg>

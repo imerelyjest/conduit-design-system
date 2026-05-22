@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit — Buttons & pills</title>
+  <link rel="stylesheet" href="./shell.css" />
+  <link rel="stylesheet" href="../animations/animations.css" />
+  <style>
+    .row-h { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); margin: 8px 0 18px; }
+
+    /* Buttons */
+    .btn {
+      font-family: var(--sans-body); font-weight: 500; font-size: 15px;
+      padding: 12px 22px; border-radius: 9999px; border: 1px solid transparent;
+      display: inline-flex; align-items: center; gap: 10px;
+      cursor: pointer; user-select: none; line-height: 1;
+      transition: transform 200ms cubic-bezier(0.2,0.7,0.2,1), box-shadow 200ms cubic-bezier(0.2,0.7,0.2,1), background 200ms cubic-bezier(0.2,0.7,0.2,1);
+    }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(180deg, #FF4529 0%, #E63E25 100%);
+      box-shadow: 0 4px 12px rgba(255,69,41,0.25);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #FF5A41 0%, #FF4529 100%);
+      box-shadow: 0 6px 20px rgba(255,69,41,0.40);
+      transform: scale(1.02);
+    }
+    .btn-primary:active { background: #D43820; transform: scale(0.99); box-shadow: 0 2px 6px rgba(255,69,41,0.25); }
+    .btn-secondary {
+      color: var(--fg-1);
+      background: linear-gradient(180deg, #FFFFFF 0%, #F4F5F8 100%);
+      border-color: var(--border-default);
+      box-shadow: 0 1px 2px rgba(15,23,42,0.06);
+    }
+    .btn-secondary:hover { transform: scale(1.02); box-shadow: 0 4px 14px rgba(15,23,42,0.12); }
+    .btn-ghost {
+      color: var(--fg-1); background: transparent; border-color: transparent;
+    }
+    .btn-ghost:hover { background: var(--bg-surface-soft); }
+    .btn-link {
+      color: var(--fg-accent); background: transparent; border: 0; padding: 12px 6px;
+    }
+    .btn-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .btn-dark {
+      color: var(--fg-on-dark); background: var(--bg-dark); border-color: var(--bg-dark);
+    }
+    .btn-dark:hover { background: #2c2c2c; transform: scale(1.02); }
+
+    .btn .arr { width: 14px; height: 14px; flex-shrink: 0; }
+    .btn[disabled] { opacity: 0.5; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+    .btn-sm { font-size: 13px; padding: 9px 16px; }
+    .btn-lg { font-size: 17px; padding: 16px 28px; }
+
+    .grid-bts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: start; }
+    .col {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 16px;
+      min-height: 220px;
+    }
+    .col.dark { background: var(--bg-dark); border-color: rgba(255,255,255,0.08); }
+    .col .ch { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .col.dark .ch { color: rgba(255,255,255,0.55); }
+    .col .item { display: flex; flex-direction: column; gap: 6px; }
+    .col .state { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3); }
+    .col.dark .state { color: rgba(255,255,255,0.45); }
+
+    /* Status & meta tags — cleaner hierarchy, more designed */
+    .tagrow {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 32px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      align-items: center;
+    }
+    .tagrow:last-of-type { border-bottom: 0; }
+    .tagrow .role {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--fg-3);
+    }
+    .tagrow .set { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+
+    /* base tag */
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 11px 6px 9px;
+      border-radius: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-default);
+      font-family: var(--sans-body);
+      font-weight: 500;
+      font-size: 12.5px;
+      line-height: 1;
+      color: var(--fg-1);
+      letter-spacing: -0.005em;
+      text-transform: none;
+    }
+    .tag .ico { width: 14px; height: 14px; flex-shrink: 0; color: var(--fg-3); }
+
+    /* status — left rail color codes meaning */
+    .tag.status { padding-left: 0; overflow: hidden; gap: 0; }
+    .tag.status .rail { width: 4px; align-self: stretch; }
+    .tag.status .body { padding: 6px 11px 6px 10px; display: inline-flex; align-items: center; gap: 7px; }
+    .tag.status .dot { width: 6px; height: 6px; border-radius: 50%; }
+    .tag.status .label { font-family: var(--sans-body); font-weight: 500; font-size: 12.5px; color: var(--fg-1); }
+    .tag.status .val   { font-family: var(--mono);     font-size: 11px;   color: var(--fg-3); letter-spacing: 0.02em; }
+
+    .tag.status.live    .rail, .tag.status.live    .dot { background: #16A34A; }
+    .tag.status.draft   .rail, .tag.status.draft   .dot { background: #B7C8D7; }
+    .tag.status.warn    .rail, .tag.status.warn    .dot { background: #F59E0B; }
+    .tag.status.fail    .rail, .tag.status.fail    .dot { background: #D43820; }
+    .tag.status.brand   .rail, .tag.status.brand   .dot { background: var(--fg-accent); }
+
+    /* sub-brand chips — left mark + tight typographic lockup */
+    .chip-brand {
+      display: inline-flex; align-items: stretch; gap: 0;
+      border-radius: 9999px;
+      border: 1px solid var(--border-default);
+      background: var(--bg-surface);
+      overflow: hidden;
+      padding: 0;
+    }
+    .chip-brand .glyph {
+      width: 28px; display: grid; place-items: center;
+      background: rgba(255,69,41,0.10);
+      color: var(--fg-accent);
+    }
+    .chip-brand .glyph img { width: 14px; height: 14px; }
+    .chip-brand .name {
+      padding: 0 14px 0 10px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--sans-display); font-weight: 700; font-size: 12.5px;
+      letter-spacing: -0.005em; color: var(--fg-1);
+    }
+    .chip-brand .name .sub { font-family: var(--mono); font-weight: 400; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3); padding-left: 6px; border-left: 1px solid var(--border-subtle); margin-left: 2px; }
+
+    .chip-brand.pulse .glyph { background: #0D1117; color: #F59E0B; }
+    .chip-brand.pulse { border-color: #0D1117; background: #0D1117; }
+    .chip-brand.pulse .name { color: #fff; }
+    .chip-brand.pulse .name .sub { color: rgba(255,255,255,0.5); border-left-color: rgba(255,255,255,0.15); }
+
+    /* meta tags — version, location, etc */
+    .tag.meta {
+      background: transparent; border-color: var(--border-subtle);
+      color: var(--fg-2);
+    }
+    .tag.meta b { color: var(--fg-1); font-weight: 600; margin-right: 2px; }
+    .tag.meta .sep { width: 1px; height: 11px; background: var(--border-default); margin: 0 3px; }
+
+    /* numeric stat tags */
+    .tag.stat {
+      padding: 5px 4px 5px 10px;
+      gap: 6px;
+    }
+    .tag.stat .v {
+      font-family: var(--sans-display); font-weight: 700; font-size: 13px;
+      letter-spacing: -0.01em; color: var(--fg-1);
+    }
+    .tag.stat .u {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--fg-3);
+      padding: 3px 7px; border-radius: 6px; background: var(--bg-surface-soft);
+    }
+    .tag.stat.up .v::before {
+      content: "↗"; color: #16A34A; margin-right: 4px; font-weight: 500;
+    }
+
+    /* badge — solid emphasis, pill */
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 10px 5px 8px;
+      border-radius: 9999px;
+      font-family: var(--mono);
+      font-size: 10px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: #fff;
+      background: var(--fg-1);
+    }
+    .badge.brand { background: var(--fg-accent); }
+    .badge .dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.85); }
+
+    /* on-dark variants */
+    .ondark {
+      background: var(--bg-dark);
+      border-radius: 14px;
+      padding: 20px 24px;
+      margin-top: 12px;
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+    }
+    .ondark .role {
+      width: 100%;
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 4px;
+    }
+    .ondark .tag { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.10); color: rgba(255,255,255,0.92); }
+    .ondark .tag.status .body { color: rgba(255,255,255,0.92); }
+    .ondark .tag.status .label { color: rgba(255,255,255,0.92); }
+    .ondark .tag.status .val { color: rgba(255,255,255,0.5); }
+    .ondark .tag.meta b { color: #fff; }
+    .ondark .badge { background: rgba(255,255,255,0.10); color: #fff; }
+    .ondark .badge.brand { background: var(--fg-accent); }
+
+    /* Anatomy */
+    .anatomy {
+      border: 1px solid var(--border-subtle); border-radius: 18px; padding: 32px;
+      background: var(--bg-surface);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center;
+    }
+    .anatomy .stage { display: grid; place-items: center; min-height: 160px; background: var(--bg-surface-soft); border-radius: 14px; }
+    .anatomy ul { padding: 0; margin: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .anatomy li { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+    .anatomy li .k { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .anatomy li .v { font-size: 14px; color: var(--fg-1); }
+  </style>
+</head>
+<body>
+  <div class="cd-card">
+    <div class="cd-card__kicker"><span class="dot"></span> Components · buttons</div>
+    <h1 class="cd-card__title">Pill buttons. Brighten on hover.</h1>
+    <p class="cd-card__subtitle">Conduit always brightens — never darkens. Primary lifts with `scale(1.02)` and a stronger glow. Secondary keeps the gradient but raises elevation. Ghost reveals a soft surface.</p>
+
+    <div class="row-h">By variant — default · hover · pressed · disabled</div>
+    <div class="grid-bts">
+      <div class="col">
+        <div class="ch">Primary · brand</div>
+        <div class="item"><span class="state">Default</span><span><button class="btn btn-primary">Book a 30-minute call <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></span></div>
+        <div class="item"><span class="state">Hover</span><span><button class="btn btn-primary" style="background: linear-gradient(180deg,#FF5A41 0%,#FF4529 100%); box-shadow: 0 6px 20px rgba(255,69,41,0.40); transform: scale(1.02);">Book a 30-minute call <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></span></div>
+        <div class="item"><span class="state">Pressed</span><span><button class="btn btn-primary" style="background:#D43820; transform:scale(0.99); box-shadow: 0 2px 6px rgba(255,69,41,0.25);">Book a 30-minute call</button></span></div>
+        <div class="item"><span class="state">Disabled</span><span><button class="btn btn-primary" disabled>Book a 30-minute call</button></span></div>
+      </div>
+      <div class="col">
+        <div class="ch">Secondary</div>
+        <div class="item"><span class="state">Default</span><span><button class="btn btn-secondary">See offerings</button></span></div>
+        <div class="item"><span class="state">Hover</span><span><button class="btn btn-secondary" style="transform:scale(1.02); box-shadow: 0 4px 14px rgba(15,23,42,0.12);">See offerings</button></span></div>
+        <div class="item"><span class="state">Pressed</span><span><button class="btn btn-secondary" style="background:#ECEEF3; transform:scale(0.99);">See offerings</button></span></div>
+        <div class="item"><span class="state">Disabled</span><span><button class="btn btn-secondary" disabled>See offerings</button></span></div>
+      </div>
+      <div class="col">
+        <div class="ch">Ghost · link</div>
+        <div class="item"><span class="state">Ghost</span><span><button class="btn btn-ghost">Read the case study</button></span></div>
+        <div class="item"><span class="state">Ghost · hover</span><span><button class="btn btn-ghost" style="background: var(--bg-surface-soft);">Read the case study</button></span></div>
+        <div class="item"><span class="state">Inline link</span><span><button class="btn btn-link">View pricing →</button></span></div>
+        <div class="item"><span class="state">Sizes</span><span style="display:flex; gap:8px; align-items:center;"><button class="btn btn-primary btn-sm">Small</button><button class="btn btn-primary btn-lg">Large</button></span></div>
+      </div>
+      <div class="col dark">
+        <div class="ch">On dark</div>
+        <div class="item"><span class="state">Primary</span><span><button class="btn btn-primary">Book a call <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button></span></div>
+        <div class="item"><span class="state">Secondary · dark</span><span><button class="btn btn-dark" style="background:#2c2c2c; border-color:rgba(255,255,255,0.1); color:#fff">See offerings</button></span></div>
+        <div class="item"><span class="state">Ghost · dark</span><span><button class="btn" style="background:transparent; color:rgba(255,255,255,0.85); border-color:transparent;">Read more</button></span></div>
+      </div>
+    </div>
+
+    <hr class="cd-card__rule" />
+
+    <div class="row-h">Tags · status · sub-brand · meta</div>
+
+    <div class="tagrow">
+      <div class="role">Status</div>
+      <div class="set">
+        <span class="tag status live"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">Live</span><span class="val">v1.0.0</span></span></span>
+        <span class="tag status brand"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">In progress</span><span class="val">day 6 / 14</span></span></span>
+        <span class="tag status warn"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">Awaiting review</span><span class="val">36 h</span></span></span>
+        <span class="tag status draft"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">Draft</span></span></span>
+        <span class="tag status fail"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">Blocked</span><span class="val">2 issues</span></span></span>
+      </div>
+    </div>
+
+    <div class="tagrow">
+      <div class="role">Sub-brand</div>
+      <div class="set">
+        <span class="chip-brand">
+          <span class="glyph"><img src="../assets/conduit-mark.svg" alt=""/></span>
+          <span class="name">Conduit Sites<span class="sub">Live</span></span>
+        </span>
+        <span class="chip-brand pulse">
+          <span class="glyph">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h2.5l1.5-4 3 8 1.5-4H14"/></svg>
+          </span>
+          <span class="name">Conduit Pulse<span class="sub">Beta</span></span>
+        </span>
+        <span class="chip-brand">
+          <span class="glyph"><img src="../assets/conduit-mark.svg" alt=""/></span>
+          <span class="name">Conduit Systems</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="tagrow">
+      <div class="role">Meta</div>
+      <div class="set">
+        <span class="tag meta">
+          <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="7" r="2.5"/><path d="M8 1.5c3 0 5.5 2.5 5.5 5.5 0 4-5.5 8-5.5 8s-5.5-4-5.5-8c0-3 2.5-5.5 5.5-5.5z"/></svg>
+          Dallas–Fort Worth, TX
+        </span>
+        <span class="tag meta">
+          <b>v1.0.0</b><span class="sep"></span>Design system
+        </span>
+        <span class="tag meta">
+          <svg class="ico" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 4v4l2.5 1.5"/></svg>
+          Updated 12 m ago
+        </span>
+        <span class="tag stat up"><span class="v">$310k</span><span class="u">Pipeline</span></span>
+        <span class="tag stat"><span class="v">36–48 h</span><span class="u">First reply</span></span>
+        <span class="badge"><span class="dot"></span>New</span>
+        <span class="badge brand"><span class="dot"></span>Featured</span>
+      </div>
+    </div>
+
+    <div class="ondark">
+      <div class="role">On dark surfaces</div>
+      <span class="tag status live"><span class="rail"></span><span class="body"><span class="dot"></span><span class="label">Live</span><span class="val">v1.0.0</span></span></span>
+      <span class="chip-brand pulse">
+        <span class="glyph"><svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h2.5l1.5-4 3 8 1.5-4H14"/></svg></span>
+        <span class="name">Conduit Pulse<span class="sub">Beta</span></span>
+      </span>
+      <span class="tag meta"><b>v1.0.0</b><span class="sep"></span>Design system</span>
+      <span class="badge brand"><span class="dot"></span>Featured</span>
+    </div>
+
+    <div class="anatomy">
+      <div class="stage">
+        <button class="btn btn-primary btn-lg">Book a 30-minute call <svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+      </div>
+      <ul>
+        <li><span class="k">Family</span><span class="v">DM Sans · 500</span></li>
+        <li><span class="k">Padding</span><span class="v">16 × 28 px (lg)</span></li>
+        <li><span class="k">Radius</span><span class="v">9999px · pill</span></li>
+        <li><span class="k">Background</span><span class="v">linear-gradient(180°, #FF4529, #E63E25)</span></li>
+        <li><span class="k">Shadow</span><span class="v">0 4px 12px rgba(255,69,41,0.25)</span></li>
+        <li><span class="k">Hover</span><span class="v">scale(1.02) · brighter top stop · stronger glow</span></li>
+        <li><span class="k">Easing</span><span class="v">cubic-bezier(0.2, 0.7, 0.2, 1) · 200ms</span></li>
+      </ul>
+    </div>
+
+    <div class="cd-meta">
+      <span><b>4</b> button variants</span>
+      <span>3 sizes</span>
+      <span>Pill radius default</span>
+      <span>Brighten — never darken</span>
+    </div>
+  </div>
+</body>
+</html>

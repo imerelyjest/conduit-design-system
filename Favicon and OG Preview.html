@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Conduit — Favicon & OG image</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+<link rel="stylesheet" href="fonts/plus-jakarta-sans/@font-face.css" />
+<link rel="stylesheet" href="fonts/dm-sans/@font-face.css" />
+<style>
+  :root {
+    --bg-page: #FBFBFE;
+    --fg-1: #040316;
+    --fg-2: #6B7280;
+    --primary: #FF4529;
+    --accent: #B7C8D7;
+    --border: rgba(183, 200, 215, 0.4);
+    --radius-md: 12px;
+    --radius-xl: 24px;
+    --shadow-1: 0 1px 2px rgba(4, 3, 22, 0.04), 0 2px 8px rgba(4, 3, 22, 0.04);
+    --shadow-3: 0 8px 24px rgba(4, 3, 22, 0.08), 0 2px 6px rgba(4, 3, 22, 0.04);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--bg-page);
+    color: var(--fg-1);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 64px 48px 96px;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; }
+  .kicker {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-2);
+    margin: 0 0 12px;
+  }
+  .kicker .dot {
+    color: var(--primary);
+    margin-right: 6px;
+  }
+  h1 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(40px, 5vw, 56px);
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+    line-height: 1.05;
+  }
+  .lede {
+    font-size: 18px;
+    color: var(--fg-2);
+    max-width: 62ch;
+    margin: 0 0 64px;
+  }
+  h2 {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.015em;
+    margin: 64px 0 8px;
+    line-height: 1.15;
+  }
+  h2 + p.section-note {
+    color: var(--fg-2);
+    margin: 0 0 28px;
+    max-width: 62ch;
+    font-size: 15px;
+  }
+
+  /* Browser tab mock */
+  .tab-mock {
+    background: #ECEEF3;
+    border-radius: 14px 14px 0 0;
+    padding: 10px 14px 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    max-width: 720px;
+  }
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-page);
+    padding: 10px 16px 10px 14px;
+    border-radius: 10px 10px 0 0;
+    font-size: 13px;
+    color: var(--fg-1);
+    box-shadow: 0 -1px 0 var(--border) inset;
+    max-width: 280px;
+  }
+  .tab img { width: 16px; height: 16px; display: block; }
+  .tab .label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .tab .x {
+    color: var(--fg-2);
+    font-size: 14px;
+    margin-left: 4px;
+    line-height: 1;
+  }
+  .url-bar {
+    background: var(--bg-page);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 14px 14px;
+    padding: 14px 18px;
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+    color: var(--fg-2);
+    max-width: 720px;
+  }
+  .url-bar .protocol { color: var(--accent); }
+  .url-bar .domain { color: var(--fg-1); }
+
+  /* Size grid */
+  .sizes {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 24px;
+  }
+  .size-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow: var(--shadow-1);
+  }
+  .size-card .stage {
+    background: #ECEEF3;
+    border-radius: 12px;
+    padding: 28px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+  }
+  .size-card img { display: block; image-rendering: -webkit-optimize-contrast; }
+  .size-card .name {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--fg-1);
+    word-break: break-all;
+  }
+  .size-card .meta {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    color: var(--fg-2);
+    margin-top: 4px;
+  }
+
+  /* OG card */
+  .og-stage {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    box-shadow: var(--shadow-1);
+    max-width: 720px;
+  }
+  .og-stage .platform {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--fg-2);
+    margin: 0 0 14px;
+  }
+  .og-card {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .og-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .og-meta {
+    background: #ECEEF3;
+    padding: 14px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+  .og-meta .domain {
+    color: var(--fg-2);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .og-meta .title {
+    color: var(--fg-1);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  /* File listing */
+  .files {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: 8px 0;
+    box-shadow: var(--shadow-1);
+    max-width: 720px;
+  }
+  .file-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 14px 24px;
+    border-bottom: 1px solid var(--border);
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 13px;
+  }
+  .file-row:last-child { border-bottom: none; }
+  .file-row .path { color: var(--fg-1); }
+  .file-row .desc {
+    color: var(--fg-2);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    margin-left: 16px;
+  }
+
+  /* Footer rule */
+  .rule {
+    height: 1px;
+    background: var(--border);
+    margin: 80px 0 32px;
+  }
+  .footnote {
+    font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--fg-2);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="kicker"><span class="dot">●</span>CONDUIT SYSTEMS · BRAND ASSETS</p>
+  <h1>Favicon &amp; share image.</h1>
+  <p class="lede">Simplified pulse-ring mark on a soft tile for browser chrome, plus a 1200×630 social-share card that mirrors the marketing-site rhythm — mark partly off-canvas, wordmark anchored left.</p>
+
+  <h2>Browser tab</h2>
+  <p class="section-note">How the favicon reads in a real chrome. The simplified two-ring pattern stays legible at 16×16 without going to a solid disc.</p>
+  <div class="tab-mock">
+    <span class="tab">
+      <img src="assets/favicon.svg" alt="" />
+      <span class="label">Conduit — Custom software for small businesses.</span>
+      <span class="x">×</span>
+    </span>
+  </div>
+  <div class="url-bar">
+    <span class="protocol">https://</span><span class="domain">conduitsystems.org</span><span style="color: var(--fg-2);">/</span>
+  </div>
+
+  <h2>Favicon, every size</h2>
+  <p class="section-note">Same mark, rendered fresh per resolution. 16/32/48 are bundled into <code style="font-family: ui-monospace, monospace; background: #ECEEF3; padding: 2px 6px; border-radius: 4px;">favicon.ico</code>; the rest are standalone PNGs.</p>
+  <div class="sizes">
+    <div class="size-card">
+      <div class="stage"><img src="assets/favicon.svg" width="64" height="64" alt="" /></div>
+      <div class="name">favicon.svg</div>
+      <div class="meta">vector · 999 B</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/favicon-16.png" width="16" height="16" alt="" /></div>
+      <div class="name">favicon-16.png</div>
+      <div class="meta">16 × 16</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/favicon-32.png" width="32" height="32" alt="" /></div>
+      <div class="name">favicon-32.png</div>
+      <div class="meta">32 × 32</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/favicon-48.png" width="48" height="48" alt="" /></div>
+      <div class="name">favicon-48.png</div>
+      <div class="meta">48 × 48</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/apple-touch-icon.png" width="120" height="120" alt="" /></div>
+      <div class="name">apple-touch-icon.png</div>
+      <div class="meta">180 × 180</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/android-chrome-192.png" width="120" height="120" alt="" /></div>
+      <div class="name">android-chrome-192.png</div>
+      <div class="meta">192 × 192</div>
+    </div>
+    <div class="size-card">
+      <div class="stage"><img src="assets/android-chrome-512.png" width="120" height="120" alt="" /></div>
+      <div class="name">android-chrome-512.png</div>
+      <div class="meta">512 × 512</div>
+    </div>
+  </div>
+
+  <h2>Social share card</h2>
+  <p class="section-note">1200 × 630 — the canonical OG / Twitter card size. Mark + wordmark only, off-canvas pulse ring on the right.</p>
+  <div class="og-stage">
+    <p class="platform">As shared on Facebook / LinkedIn</p>
+    <div class="og-card">
+      <img src="assets/og-image.png" alt="Conduit" />
+      <div class="og-meta">
+        <div class="domain">conduitsystems.org</div>
+        <div class="title">Conduit — Custom software for small businesses.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>HTML to drop in</h2>
+  <p class="section-note">Paste into <code style="font-family: ui-monospace, monospace; background: #ECEEF3; padding: 2px 6px; border-radius: 4px;">&lt;head&gt;</code>. Order matters — modern browsers prefer SVG, fall back to ICO.</p>
+  <pre style="background: #040316; color: #FBFBFE; padding: 20px 24px; border-radius: var(--radius-md); font-size: 13px; overflow-x: auto; font-family: ui-monospace, 'SF Mono', Menlo, monospace; line-height: 1.6;"><span style="color: var(--accent);">&lt;!-- Favicons --&gt;</span>
+&lt;link rel=<span style="color: #FF8A65;">"icon"</span> type=<span style="color: #FF8A65;">"image/svg+xml"</span> href=<span style="color: #FF8A65;">"/favicon.svg"</span>&gt;
+&lt;link rel=<span style="color: #FF8A65;">"icon"</span> type=<span style="color: #FF8A65;">"image/x-icon"</span> href=<span style="color: #FF8A65;">"/favicon.ico"</span>&gt;
+&lt;link rel=<span style="color: #FF8A65;">"apple-touch-icon"</span> sizes=<span style="color: #FF8A65;">"180x180"</span> href=<span style="color: #FF8A65;">"/apple-touch-icon.png"</span>&gt;
+&lt;link rel=<span style="color: #FF8A65;">"icon"</span> type=<span style="color: #FF8A65;">"image/png"</span> sizes=<span style="color: #FF8A65;">"192x192"</span> href=<span style="color: #FF8A65;">"/android-chrome-192.png"</span>&gt;
+&lt;link rel=<span style="color: #FF8A65;">"icon"</span> type=<span style="color: #FF8A65;">"image/png"</span> sizes=<span style="color: #FF8A65;">"512x512"</span> href=<span style="color: #FF8A65;">"/android-chrome-512.png"</span>&gt;
+
+<span style="color: var(--accent);">&lt;!-- Open Graph / Twitter --&gt;</span>
+&lt;meta property=<span style="color: #FF8A65;">"og:image"</span> content=<span style="color: #FF8A65;">"/og-image.png"</span>&gt;
+&lt;meta property=<span style="color: #FF8A65;">"og:image:width"</span> content=<span style="color: #FF8A65;">"1200"</span>&gt;
+&lt;meta property=<span style="color: #FF8A65;">"og:image:height"</span> content=<span style="color: #FF8A65;">"630"</span>&gt;
+&lt;meta name=<span style="color: #FF8A65;">"twitter:card"</span> content=<span style="color: #FF8A65;">"summary_large_image"</span>&gt;
+&lt;meta name=<span style="color: #FF8A65;">"twitter:image"</span> content=<span style="color: #FF8A65;">"/og-image.png"</span>&gt;</pre>
+
+  <h2>Files in this delivery</h2>
+  <div class="files">
+    <div class="file-row"><span class="path">assets/favicon.svg<span class="desc">— scalable, modern browsers</span></span></div>
+    <div class="file-row"><span class="path">assets/favicon.ico<span class="desc">— legacy, multi-size (16/32/48)</span></span></div>
+    <div class="file-row"><span class="path">assets/favicon-16.png<span class="desc">— browser tab</span></span></div>
+    <div class="file-row"><span class="path">assets/favicon-32.png<span class="desc">— retina tab, bookmark</span></span></div>
+    <div class="file-row"><span class="path">assets/favicon-48.png<span class="desc">— Windows tile</span></span></div>
+    <div class="file-row"><span class="path">assets/apple-touch-icon.png<span class="desc">— iOS home-screen</span></span></div>
+    <div class="file-row"><span class="path">assets/android-chrome-192.png<span class="desc">— Android home-screen</span></span></div>
+    <div class="file-row"><span class="path">assets/android-chrome-512.png<span class="desc">— PWA splash, large surfaces</span></span></div>
+    <div class="file-row"><span class="path">assets/og-image.png<span class="desc">— social share, 1200×630</span></span></div>
+    <div class="file-row"><span class="path">assets/og-image.svg<span class="desc">— editable source</span></span></div>
+  </div>
+
+  <div class="rule"></div>
+  <p class="footnote">CONDUIT SYSTEMS · BRAND PACK · v1</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conduit Systems — Type Scale</title>
+  <link rel="stylesheet" href="../fonts/fonts.css" />
+  <style>
+    :root {
+      --text: #040316; --bg: #FBFBFE; --primary: #FF4529;
+      --secondary: #212121; --accent: #B7C8D7; --muted: #6B7280;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+      font-family: var(--font-sans); }
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 64px 24px 96px; }
+    h1, h2, h3, h4, h5 { font-family: var(--font-display); font-weight: 700; color: var(--text); margin: 0; }
+
+    h1 { font-size: 4.210rem; line-height: 1.05; letter-spacing: -0.02em; }
+    h2 { font-size: 3.158rem; line-height: 1.10; letter-spacing: -0.015em; }
+    h3 { font-size: 2.369rem; line-height: 1.20; }
+    h4 { font-size: 1.777rem; line-height: 1.25; }
+    h5 { font-size: 1.333rem; line-height: 1.30; }
+    .small { font-size: 0.75rem; line-height: 1.4; }
+
+    .lede { color: var(--muted); max-width: 62ch; margin: 12px 0 56px; line-height: 1.5; }
+
+    .row {
+      display: grid; grid-template-columns: 80px 1fr 220px;
+      align-items: baseline; gap: 24px;
+      padding: 18px 0;
+      border-bottom: 1px dashed rgba(33,33,33,0.08);
+    }
+    .row .stop { color: var(--muted); font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .row .meta { text-align: right; color: var(--muted); font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.78rem; }
+
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 64px; }
+    .face {
+      padding: 32px; border-radius: 18px;
+      background: #fff; border: 1px solid rgba(33,33,33,0.08);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    }
+    .face .label { font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.72rem;
+      color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px; }
+    .face .specimen { font-size: 6rem; line-height: 1; letter-spacing: -0.04em; margin: 0 0 16px; }
+    .face .body { font-size: 1rem; line-height: 1.5; color: rgba(4,3,22,0.85); }
+    .face .meta { margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(33,33,33,0.08);
+      font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.78rem; color: var(--muted); }
+
+    .display .specimen { font-family: var(--font-display); font-weight: 700; }
+    .body-face .specimen { font-family: var(--font-sans); font-weight: 500; }
+
+    .pangram { font-size: 1.25rem; line-height: 1.5; color: rgba(4,3,22,0.78); margin: 0; }
+
+    section { margin-top: 64px; }
+    section > h2 { margin-bottom: 24px; }
+
+    .glyphs { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem;
+      letter-spacing: 0.04em; color: var(--text); display: flex; flex-wrap: wrap; gap: 12px; }
+    .glyphs span { display: inline-block; min-width: 36px; text-align: center;
+      padding: 6px 8px; background: #fff; border: 1px solid rgba(33,33,33,0.06); border-radius: 8px; }
+
+    @media (max-width: 720px) {
+      h1 { font-size: clamp(2.5rem, 6vw + 1rem, 4.21rem); }
+      h2 { font-size: clamp(2rem, 4vw + 0.75rem, 3.158rem); }
+      .row { grid-template-columns: 60px 1fr; }
+      .row .meta { grid-column: 1 / -1; text-align: left; }
+      .pair { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Type Scale</h1>
+    <p class="lede">Plus Jakarta Sans drives display. DM Sans handles body and UI. Scale uses the perfect-fourth ratio (1.333) anchored at a 16px base.</p>
+
+    <section>
+      <h2>Steps</h2>
+
+      <div class="row">
+        <span class="stop">H1</span>
+        <h1>Heading one — clear the room.</h1>
+        <span class="meta">4.210rem · 67.36px · 700 · -0.02em · 1.05</span>
+      </div>
+      <div class="row">
+        <span class="stop">H2</span>
+        <h2>Heading two — the section header.</h2>
+        <span class="meta">3.158rem · 50.56px · 700 · -0.015em · 1.10</span>
+      </div>
+      <div class="row">
+        <span class="stop">H3</span>
+        <h3>Heading three — call out a subtopic.</h3>
+        <span class="meta">2.369rem · 37.92px · 700 · 1.20</span>
+      </div>
+      <div class="row">
+        <span class="stop">H4</span>
+        <h4>Heading four — card titles, callouts.</h4>
+        <span class="meta">1.777rem · 28.48px · 700 · 1.25</span>
+      </div>
+      <div class="row">
+        <span class="stop">H5</span>
+        <h5>Heading five — fine print headings.</h5>
+        <span class="meta">1.333rem · 21.28px · 700 · 1.30</span>
+      </div>
+      <div class="row">
+        <span class="stop">Body</span>
+        <p style="margin: 0; font-size: 1rem; line-height: 1.5; max-width: 62ch;">Body copy at 16px is the default. Line-height 1.5, weight 400. Keep paragraph measure under <strong>62 characters</strong> — past that, your reader's eye loses the line return.</p>
+        <span class="meta">1rem · 16px · 400 · 1.50</span>
+      </div>
+      <div class="row">
+        <span class="stop">Small</span>
+        <p class="small" style="margin: 0;">Small text. Form helpers, captions, footer tags, monospace meta lines.</p>
+        <span class="meta">0.75rem · 12px · 400 · 1.40</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>Faces</h2>
+      <div class="pair">
+        <div class="face display">
+          <div class="label">Display · Headings</div>
+          <p class="specimen">Aa</p>
+          <p class="pangram">Pack my box with five dozen liquor jugs.</p>
+          <div class="meta">Plus Jakarta Sans · 700</div>
+        </div>
+        <div class="face body-face">
+          <div class="label">Body · UI</div>
+          <p class="specimen">Aa</p>
+          <p class="pangram">Sphinx of black quartz, judge my vow — nimbly typeset in DM Sans 400.</p>
+          <div class="meta">DM Sans · 400 / 500</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Glyphs · display</h2>
+      <div class="glyphs" aria-label="Plus Jakarta Sans glyphs">
+        <span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span>
+        <span>H</span><span>I</span><span>J</span><span>K</span><span>L</span><span>M</span><span>N</span>
+        <span>O</span><span>P</span><span>Q</span><span>R</span><span>S</span><span>T</span><span>U</span>
+        <span>V</span><span>W</span><span>X</span><span>Y</span><span>Z</span>
+        <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+        <span>6</span><span>7</span><span>8</span><span>9</span>
+        <span>&amp;</span><span>!</span><span>?</span><span>—</span><span>·</span>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

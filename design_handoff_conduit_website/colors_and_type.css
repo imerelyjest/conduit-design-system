@@ -1,0 +1,115 @@
+/* ============================================================
+   Conduit Systems — Colors & Type (semantic shorthand layer)
+   Sits on top of /tokens/tokens.css. Use the semantic vars below
+   in real designs; reach for the raw tokens only when needed.
+   ============================================================ */
+
+@import url("./fonts/fonts.css");
+@import url("./tokens/tokens.css");
+
+:root {
+  /* ── Foreground / background semantic ── */
+  --fg-1:        #040316;                    /* primary text */
+  --fg-2:        #212121;                    /* secondary text, headings on warm bg */
+  --fg-3:        #6B7280;                    /* muted, captions, meta */
+  --fg-on-dark:  #FBFBFE;                    /* text on secondary/dark surfaces */
+  --fg-accent:   #FF4529;                    /* link / brand-emphasis text */
+
+  --bg-page:        #FBFBFE;                 /* page surface (60% of layout) */
+  --bg-surface:     #FFFFFF;                 /* card surface */
+  --bg-surface-soft:#F4F5F8;                 /* recessed card / btn-secondary */
+  --bg-surface-pressed:#ECEEF3;
+  --bg-dark:        #212121;                 /* dark sections, footer (30% of layout) */
+  --bg-trim:        #B7C8D7;                 /* accent — borders, dividers, <5% trim */
+
+  --border-subtle:  rgba(183, 200, 215, 0.4);
+  --border-default: rgba(183, 200, 215, 0.6);
+  --border-strong:  rgba(33, 33, 33, 0.18);
+
+  /* ── Type families ── */
+  --serif-display: 'Plus Jakarta Sans', system-ui, sans-serif; /* (no serifs in brand — display family is named here for vocabulary parity) */
+  --sans-display:  'Plus Jakarta Sans', system-ui, sans-serif; /* H1–H5, wordmark */
+  --sans-body:     'DM Sans',           system-ui, sans-serif; /* body + UI */
+  --mono:          ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; /* labels, meta, kicker lines */
+}
+
+/* ── Semantic element styles ── */
+h1, .h1 {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: var(--fs-h1-fluid, 4.21rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+  margin: 0;
+}
+h2, .h2 {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: var(--fs-h2-fluid, 3.158rem);
+  line-height: 1.10;
+  letter-spacing: -0.015em;
+  color: var(--fg-1);
+  margin: 0;
+}
+h3, .h3 {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: 2.369rem;
+  line-height: 1.20;
+  color: var(--fg-1);
+  margin: 0;
+}
+h4, .h4 {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: 1.777rem;
+  line-height: 1.25;
+  color: var(--fg-1);
+  margin: 0;
+}
+h5, .h5 {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: 1.333rem;
+  line-height: 1.30;
+  color: var(--fg-1);
+  margin: 0;
+}
+p, .p {
+  font-family: var(--sans-body);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.50;
+  color: var(--fg-1);
+  max-width: 62ch;
+  margin: 0;
+}
+.lede {
+  font-family: var(--sans-body);
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--fg-3);
+  max-width: 62ch;
+}
+small, .small {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--fg-3);
+}
+.kicker, .label, .mono-label {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+code, kbd, samp, pre {
+  font-family: var(--mono);
+  font-size: 0.92em;
+}
+a {
+  color: var(--fg-accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; text-underline-offset: 2px; }

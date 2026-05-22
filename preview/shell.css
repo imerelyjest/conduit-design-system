@@ -1,0 +1,74 @@
+/* Conduit — preview-card shell (used by /preview/*.html cards) */
+@import url("../colors_and_type.css");
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--sans-body);
+  color: var(--fg-1);
+  background: var(--bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.cd-card {
+  padding: 56px 64px;
+  min-height: 100vh;
+}
+
+.cd-card__kicker {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 28px;
+}
+.cd-card__kicker .dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--fg-accent);
+}
+
+.cd-card__title {
+  font-family: var(--sans-display);
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--fg-1);
+  margin: 0 0 12px;
+}
+.cd-card__subtitle {
+  color: var(--fg-3);
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 62ch;
+  margin: 0 0 40px;
+}
+
+.cd-card__rule {
+  height: 1px;
+  background: var(--border-subtle);
+  margin: 32px 0;
+  border: 0;
+}
+
+.cd-meta {
+  margin-top: 48px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  gap: 24px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg-3);
+}
+.cd-meta span { display: inline-flex; gap: 6px; }
+.cd-meta b { color: var(--fg-1); font-weight: 500; }

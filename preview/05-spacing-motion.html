@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit — Spacing, radius, elevation</title>
+  <link rel="stylesheet" href="./shell.css" />
+  <style>
+    .row-h {
+      font-family: var(--mono);
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3);
+      margin: 8px 0 18px;
+    }
+
+    /* Spacing */
+    .space {
+      display: grid;
+      grid-template-columns: 70px 90px 1fr;
+      gap: 14px 24px;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .space:last-child { border-bottom: 0; }
+    .space .tok { font-family: var(--mono); font-size: 12px; letter-spacing: 0.04em; color: var(--fg-1); }
+    .space .px  { font-family: var(--mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.04em; }
+    .space .bar { height: 14px; background: var(--fg-accent); border-radius: 4px; }
+
+    /* Radius */
+    .radii { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-bottom: 32px; }
+    .r {
+      aspect-ratio: 1/1;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      display: grid; place-items: end center;
+      padding: 16px 0;
+      position: relative;
+    }
+    .r::before {
+      content: ""; position: absolute; inset: 24px;
+      background: var(--fg-accent);
+      opacity: 0.85;
+      border-radius: inherit;
+    }
+    .r .label { position: relative; z-index: 1; font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-on-dark); mix-blend-mode: normal; background: rgba(0,0,0,0.55); padding: 4px 8px; border-radius: 6px; }
+
+    /* Elevation */
+    .elev { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; margin-bottom: 32px; }
+    .card {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      padding: 22px;
+      min-height: 130px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .card.s1 { box-shadow: 0 1px 2px rgba(15,23,42,0.06); }
+    .card.s2 { box-shadow: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04); }
+    .card.s3 { box-shadow: 0 4px 14px rgba(15,23,42,0.12); }
+    .card.s4 { box-shadow: 0 24px 50px -20px rgba(20,25,40,0.18), 0 50px 100px -40px rgba(20,25,40,0.18); }
+    .card.glow {
+      background: var(--fg-accent); color: #fff;
+      box-shadow: 0 6px 20px rgba(255,69,41,0.40);
+    }
+    .card .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .card.glow .l { color: rgba(255,255,255,0.85); }
+    .card .v { font-family: var(--sans-display); font-weight: 700; font-size: 17px; letter-spacing: -0.01em; }
+
+    /* Motion */
+    .motion { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-bottom: 24px; }
+    .m {
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 18px;
+      background: var(--bg-surface);
+    }
+    .m .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 8px; }
+    .m .v { font-family: var(--sans-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+    .m .u { font-family: var(--mono); font-size: 11px; color: var(--fg-3); margin-top: 4px; }
+
+    .easing-row {
+      border: 1px solid var(--border-subtle); border-radius: 18px; padding: 22px 28px;
+      display: grid; grid-template-columns: 1fr 1.6fr; gap: 32px; align-items: center;
+      background: var(--bg-surface);
+    }
+    .easing-row .label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 6px; }
+    .easing-row .name { font-family: var(--sans-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; }
+    .easing-row .code { font-family: var(--mono); font-size: 12px; color: var(--fg-1); margin-top: 8px; }
+
+    .easing-svg { width: 100%; height: 120px; }
+  </style>
+</head>
+<body>
+  <div class="cd-card">
+    <div class="cd-card__kicker"><span class="dot"></span> Foundations · spacing & motion</div>
+    <h1 class="cd-card__title">4-pixel base. Pill, twelve, twenty-four, thirty-two.</h1>
+    <p class="cd-card__subtitle">A 4 px base unit. Pills for buttons and nav. Cards at twenty-four. The featured card at thirty-two. Inputs at twelve. Square corners only inside mono labels.</p>
+
+    <div class="row-h">Spacing scale · 4 px base</div>
+    <div>
+      <div class="space"><div class="tok">--space-1</div><div class="px">4 px</div><div class="bar" style="width:4px"></div></div>
+      <div class="space"><div class="tok">--space-2</div><div class="px">8 px</div><div class="bar" style="width:8px"></div></div>
+      <div class="space"><div class="tok">--space-3</div><div class="px">12 px</div><div class="bar" style="width:12px"></div></div>
+      <div class="space"><div class="tok">--space-4</div><div class="px">16 px</div><div class="bar" style="width:16px"></div></div>
+      <div class="space"><div class="tok">--space-6</div><div class="px">24 px</div><div class="bar" style="width:24px"></div></div>
+      <div class="space"><div class="tok">--space-8</div><div class="px">32 px</div><div class="bar" style="width:32px"></div></div>
+      <div class="space"><div class="tok">--space-12</div><div class="px">48 px</div><div class="bar" style="width:48px"></div></div>
+      <div class="space"><div class="tok">--space-16</div><div class="px">64 px</div><div class="bar" style="width:64px"></div></div>
+      <div class="space"><div class="tok">--space-24</div><div class="px">96 px · section</div><div class="bar" style="width:96px"></div></div>
+      <div class="space"><div class="tok">--space-32</div><div class="px">128 px · hero</div><div class="bar" style="width:128px"></div></div>
+    </div>
+
+    <hr class="cd-card__rule" style="margin: 36px 0;" />
+
+    <div class="row-h">Radius</div>
+    <div class="radii">
+      <div class="r" style="border-radius:6px"><span class="label">SM · 6</span></div>
+      <div class="r" style="border-radius:12px"><span class="label">MD · 12 · inputs</span></div>
+      <div class="r" style="border-radius:18px"><span class="label">LG · 18</span></div>
+      <div class="r" style="border-radius:24px"><span class="label">XL · 24 · cards</span></div>
+      <div class="r" style="border-radius:32px"><span class="label">2XL · 32 · feature</span></div>
+      <div class="r" style="border-radius:9999px"><span class="label">PILL · btn / nav</span></div>
+    </div>
+
+    <div class="row-h">Elevation</div>
+    <div class="elev">
+      <div class="card s1"><div class="l">Shadow 1</div><div class="v">Hairline</div></div>
+      <div class="card s2"><div class="l">Shadow 2</div><div class="v">Surface</div></div>
+      <div class="card s3"><div class="l">Shadow 3</div><div class="v">Hover lift</div></div>
+      <div class="card s4"><div class="l">Shadow 4</div><div class="v">Modal</div></div>
+      <div class="card glow"><div class="l">Primary glow</div><div class="v">CTA</div></div>
+    </div>
+
+    <div class="row-h">Motion · durations</div>
+    <div class="motion">
+      <div class="m"><div class="l">Instant</div><div class="v">100<span style="font-size:14px;color:var(--fg-3)">ms</span></div><div class="u">focus rings</div></div>
+      <div class="m"><div class="l">Fast</div><div class="v">200<span style="font-size:14px;color:var(--fg-3)">ms</span></div><div class="u">button states</div></div>
+      <div class="m"><div class="l">Base</div><div class="v">240<span style="font-size:14px;color:var(--fg-3)">ms</span></div><div class="u">default UI</div></div>
+      <div class="m"><div class="l">Card</div><div class="v">320<span style="font-size:14px;color:var(--fg-3)">ms</span></div><div class="u">reveal · lift</div></div>
+      <div class="m"><div class="l">Scene</div><div class="v">700<span style="font-size:14px;color:var(--fg-3)">ms</span></div><div class="u">3D plane shifts</div></div>
+    </div>
+
+    <div class="easing-row">
+      <div>
+        <div class="label">Default easing</div>
+        <div class="name">Out-fast, settle-in slow</div>
+        <div class="code">cubic-bezier(0.2, 0.7, 0.2, 1)</div>
+      </div>
+      <svg class="easing-svg" viewBox="0 0 400 120" aria-hidden="true">
+        <defs>
+          <pattern id="grid" width="40" height="30" patternUnits="userSpaceOnUse">
+            <path d="M40 0 H0 V30" fill="none" stroke="rgba(183,200,215,0.35)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="400" height="120" fill="url(#grid)"/>
+        <path d="M 0 110 C 80 110, 80 10, 400 10"
+              fill="none" stroke="#FF4529" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="0"   cy="110" r="4" fill="#212121"/>
+        <circle cx="400" cy="10"  r="4" fill="#FF4529"/>
+        <text x="6" y="118" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6B7280" letter-spacing="1.4">START</text>
+        <text x="350" y="118" font-family="ui-monospace, Menlo, monospace" font-size="9" fill="#6B7280" letter-spacing="1.4">SETTLE</text>
+      </svg>
+    </div>
+
+    <div class="cd-meta">
+      <span><b>4 px</b> base</span>
+      <span>6 radii · pill default</span>
+      <span>5 elevations</span>
+      <span>One easing rules everything</span>
+    </div>
+  </div>
+</body>
+</html>

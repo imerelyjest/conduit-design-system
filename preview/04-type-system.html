@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit — Type system</title>
+  <link rel="stylesheet" href="./shell.css" />
+  <style>
+    .top {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 40px;
+    }
+    .fam {
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px;
+      padding: 28px 32px;
+      min-height: 220px;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .fam .head { display:flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .fam .role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .fam .name {
+      font-weight: 700; font-size: 32px; letter-spacing: -0.015em;
+    }
+    .fam.display .name { font-family: var(--sans-display); }
+    .fam.body    .name { font-family: var(--sans-body); }
+    .fam .stack { font-family: var(--mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.04em; }
+    .fam .Aa {
+      font-weight: 700;
+      font-size: 96px; line-height: 1;
+      letter-spacing: -0.025em;
+      color: var(--fg-1);
+    }
+    .fam.display .Aa { font-family: var(--sans-display); }
+    .fam.body    .Aa { font-family: var(--sans-body); font-weight: 500; }
+    .fam .weights { display: flex; gap: 18px; font-size: 14px; color: var(--fg-2); }
+    .fam .weights span { font-family: inherit; }
+    .fam .weights b { color: var(--fg-3); font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; margin-right: 6px; }
+
+    table.scale { width: 100%; border-collapse: collapse; margin-bottom: 28px; }
+    table.scale td { padding: 16px 0; border-bottom: 1px solid var(--border-subtle); vertical-align: baseline; }
+    table.scale td.label { width: 96px; font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    table.scale td.spec  { width: 220px; font-family: var(--mono); font-size: 11px; color: var(--fg-3); letter-spacing: 0.04em; }
+    table.scale td.demo  { font-family: var(--sans-display); font-weight: 700; color: var(--fg-1); letter-spacing: -0.015em; }
+    table.scale tr.h1 .demo { font-size: 67px; line-height: 1.05; letter-spacing: -0.02em; }
+    table.scale tr.h2 .demo { font-size: 50px; line-height: 1.10; letter-spacing: -0.015em; }
+    table.scale tr.h3 .demo { font-size: 38px; line-height: 1.20; }
+    table.scale tr.h4 .demo { font-size: 28px; line-height: 1.25; }
+    table.scale tr.h5 .demo { font-size: 21px; line-height: 1.30; }
+    table.scale tr.body .demo { font-family: var(--sans-body); font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0; }
+    table.scale tr.small .demo { font-family: var(--sans-body); font-size: 12px; font-weight: 400; line-height: 1.4; color: var(--fg-3); letter-spacing: 0; }
+    table.scale tr.kicker .demo { font-family: var(--mono); font-size: 12px; font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+
+    .specimens { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+    .specimen {
+      border: 1px solid var(--border-subtle);
+      border-radius: 24px; padding: 28px 32px;
+      background: var(--bg-surface);
+    }
+    .specimen .role { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); margin-bottom: 12px; }
+    .specimen .head {
+      font-family: var(--sans-display); font-weight: 700;
+      font-size: 38px; line-height: 1.1; letter-spacing: -0.015em;
+      margin: 0 0 14px;
+      max-width: 24ch;
+    }
+    .specimen .head em { color: var(--fg-accent); font-style: normal; }
+    .specimen p { font-family: var(--sans-body); font-size: 16px; line-height: 1.55; color: var(--fg-2); margin: 0 0 12px; max-width: 62ch; }
+    .specimen .meta-line { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--fg-3); display:flex; gap:14px; margin-top: 16px; }
+    .specimen .meta-line b { color: var(--fg-1); font-weight: 500; }
+
+    .pair {
+      border-radius: 24px; padding: 24px;
+      background: var(--bg-surface-soft);
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .pair .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .pair .display-line { font-family: var(--sans-display); font-weight: 700; font-size: 32px; letter-spacing: -0.015em; line-height: 1.1; }
+    .pair .body-line { font-family: var(--sans-body); font-size: 14px; line-height: 1.5; color: var(--fg-2); }
+    .pair .mono-line { font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+  </style>
+</head>
+<body>
+  <div class="cd-card">
+    <div class="cd-card__kicker"><span class="dot"></span> Foundations · type</div>
+    <h1 class="cd-card__title">Two families. One scale. Tight tracking.</h1>
+    <p class="cd-card__subtitle">Plus Jakarta Sans 700 carries the headlines and the wordmark — geometric without being cold. DM Sans takes the reading load. Mono fills the kicker / metadata role; never used as body.</p>
+
+    <div class="top">
+      <div class="fam display">
+        <div class="head"><span class="role">Display · headlines</span><span class="role">Plus Jakarta Sans · 700</span></div>
+        <div class="Aa">Aa Æ&amp;</div>
+        <div class="name">Software you actually run on.</div>
+        <div class="weights">
+          <span><b>700</b>Bold</span>
+          <span><b>500</b>Med · UI only</span>
+          <span><b>400</b>Reg · meta only</span>
+        </div>
+        <div class="stack">'Plus Jakarta Sans', system-ui, sans-serif</div>
+      </div>
+      <div class="fam body">
+        <div class="head"><span class="role">Body · reading & UI</span><span class="role">DM Sans · 400 / 500</span></div>
+        <div class="Aa">Aa Æ&amp;</div>
+        <div class="name">Plainspoken. 16 px / 1.5 / 62 ch.</div>
+        <div class="weights">
+          <span><b>500</b>Medium · buttons</span>
+          <span><b>400</b>Regular · body</span>
+        </div>
+        <div class="stack">'DM Sans', system-ui, sans-serif</div>
+      </div>
+    </div>
+
+    <table class="scale">
+      <tr class="h1"><td class="label">H1</td><td class="spec">67 / 1.05 / -0.02em</td><td class="demo">Software your business runs on.</td></tr>
+      <tr class="h2"><td class="label">H2</td><td class="spec">50 / 1.10 / -0.015em</td><td class="demo">Built around how you actually work.</td></tr>
+      <tr class="h3"><td class="label">H3</td><td class="spec">38 / 1.20</td><td class="demo">Custom CRMs, internal apps, websites.</td></tr>
+      <tr class="h4"><td class="label">H4</td><td class="spec">28 / 1.25</td><td class="demo">36–48 hour first-look. Then we ship.</td></tr>
+      <tr class="h5"><td class="label">H5</td><td class="spec">21 / 1.30</td><td class="demo">A 30-minute call. No script.</td></tr>
+      <tr class="body"><td class="label">Body</td><td class="spec">16 / 1.50 · DM Sans</td><td class="demo">Conduit Systems is a Dallas–Fort Worth software shop building pipeline tools, internal apps, and AI-assisted websites for owner-operated businesses. We start with a 30-minute call and ship working software inside two weeks.</td></tr>
+      <tr class="small"><td class="label">Small</td><td class="spec">12 / 1.40 · DM Sans</td><td class="demo">Source of truth · v1.0.0 · Dallas–Fort Worth, TX</td></tr>
+      <tr class="kicker"><td class="label">Kicker</td><td class="spec">12 / 0.18em · mono</td><td class="demo">● Conduit Sites · Available now</td></tr>
+    </table>
+
+    <div class="specimens">
+      <div class="specimen">
+        <div class="role">In-context — hero</div>
+        <div class="head">Your sales pipeline,<br/><em>automated.</em></div>
+        <p>Spreadsheets are fine until they're not. We build CRMs around the actual stages of your sale — not whatever HubSpot shipped last Tuesday — and we have a working version on your desk in under two weeks.</p>
+        <div class="meta-line"><span><b>30 min</b> intro call</span><span><b>36–48 h</b> first response</span><span><b>1–2 wk</b> first deliverable</span></div>
+      </div>
+      <div class="pair">
+        <div class="l">Mono · kicker</div>
+        <div class="mono-line">● Conduit Sites · Live</div>
+        <div class="l" style="margin-top:6px;">Display · h3</div>
+        <div class="display-line">Built around how you actually work.</div>
+        <div class="l" style="margin-top:6px;">Body · 14 / DM Sans</div>
+        <div class="body-line">Direct. Confident. Plainspoken. The contractor's-truck honesty of "I've done this before, and I'll have a real answer for you in 48 hours."</div>
+      </div>
+    </div>
+
+    <div class="cd-meta">
+      <span><b>2</b> families</span>
+      <span>Perfect-fourth scale · 1.333</span>
+      <span>Body measure ≤ 62ch</span>
+      <span>Self-hosted · WOFF2</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conduit Systems — Color Swatches</title>
+  <style>
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('../fonts/plus-jakarta-sans/PlusJakartaSans-Bold.ttf') format('truetype');
+      font-weight: 700; font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('../fonts/dm-sans/DMSans-Regular.ttf') format('truetype');
+      font-weight: 400; font-display: swap;
+    }
+    @font-face {
+      font-family: 'DM Sans';
+      src: url('../fonts/dm-sans/DMSans-Medium.ttf') format('truetype');
+      font-weight: 500; font-display: swap;
+    }
+
+    :root {
+      --text: #040316; --bg: #FBFBFE; --primary: #FF4529;
+      --secondary: #212121; --accent: #B7C8D7; --muted: #6B7280;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text);
+      font-family: 'DM Sans', system-ui, sans-serif; }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; letter-spacing: -0.02em;
+      font-size: clamp(2rem, 4vw + 1rem, 3rem); margin: 0 0 8px; }
+    h2 { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 1.4rem; margin: 48px 0 20px; }
+    p.lede { color: var(--muted); max-width: 62ch; margin: 0 0 32px; line-height: 1.5; }
+
+    .wrap { max-width: 1280px; margin: 0 auto; padding: 64px 24px 96px; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px; }
+
+    .swatch {
+      position: relative; border-radius: 18px; overflow: hidden;
+      border: 1px solid rgba(33, 33, 33, 0.08);
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+      display: flex; flex-direction: column;
+      min-height: 200px;
+      background: #fff;
+    }
+    .swatch .chip {
+      flex: 1; padding: 18px;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      color: rgba(255, 255, 255, 0.92);
+    }
+    .swatch.on-light .chip { color: rgba(4, 3, 22, 0.85); }
+    .swatch .role {
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700;
+      font-size: 1.25rem; letter-spacing: -0.01em;
+    }
+    .swatch .ratio {
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+      opacity: 0.85;
+    }
+    .swatch .meta {
+      padding: 14px 18px; background: #fff; border-top: 1px solid rgba(33,33,33,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.78rem;
+      color: var(--text);
+    }
+    .swatch .meta button {
+      background: transparent; border: 0; cursor: pointer; color: var(--muted);
+      font: inherit; padding: 4px 6px; border-radius: 6px;
+    }
+    .swatch .meta button:hover { color: var(--primary); background: rgba(255,69,41,0.06); }
+
+    /* Gradient swatches */
+    .grad-grid { display: grid; gap: 16px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grad {
+      height: 140px; border-radius: 18px; padding: 18px;
+      display: flex; align-items: flex-end; color: #fff;
+      font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.78rem;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+    }
+
+    /* 60/30/10 visual */
+    .ratio-bar { display: flex; height: 64px; border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(33,33,33,0.08); }
+    .ratio-bar > div { display: flex; align-items: center; justify-content: center;
+      font-family: ui-monospace, SFMono-Regular, monospace; font-size: 0.72rem;
+      letter-spacing: 0.1em; text-transform: uppercase; }
+
+    .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px; margin-top: 16px; font-size: 0.85rem; color: var(--muted); }
+    .legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+      margin-right: 8px; vertical-align: middle; border: 1px solid rgba(33,33,33,0.08); }
+
+    .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: #040316; color: #fff; padding: 10px 18px; border-radius: 999px;
+      font-size: 0.85rem; opacity: 0; transition: all 240ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      pointer-events: none; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Color Swatches</h1>
+    <p class="lede">Five anchor colors. Click any hex to copy. The <strong>60/30/10</strong> ratio governs every layout — background dominates, secondary supports, primary punctuates.</p>
+
+    <h2>Anchors</h2>
+    <div class="grid">
+      <div class="swatch">
+        <div class="chip" style="background:#040316">
+          <span class="role">Text</span><span class="ratio">Fixed cost</span>
+        </div>
+        <div class="meta"><span>#040316</span><button data-copy="#040316">Copy</button></div>
+      </div>
+      <div class="swatch on-light">
+        <div class="chip" style="background:#FBFBFE; border-bottom: 1px solid rgba(0,0,0,0.06);">
+          <span class="role">Background</span><span class="ratio">60 %</span>
+        </div>
+        <div class="meta"><span>#FBFBFE</span><button data-copy="#FBFBFE">Copy</button></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FF4529">
+          <span class="role">Primary</span><span class="ratio">10 %</span>
+        </div>
+        <div class="meta"><span>#FF4529</span><button data-copy="#FF4529">Copy</button></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#212121">
+          <span class="role">Secondary</span><span class="ratio">30 %</span>
+        </div>
+        <div class="meta"><span>#212121</span><button data-copy="#212121">Copy</button></div>
+      </div>
+      <div class="swatch on-light">
+        <div class="chip" style="background:#B7C8D7">
+          <span class="role">Accent</span><span class="ratio">&lt; 5 % trim</span>
+        </div>
+        <div class="meta"><span>#B7C8D7</span><button data-copy="#B7C8D7">Copy</button></div>
+      </div>
+    </div>
+
+    <h2>State / semantic</h2>
+    <div class="grid">
+      <div class="swatch">
+        <div class="chip" style="background:#FF5A41"><span class="role">Primary tint</span><span class="ratio">Hover top</span></div>
+        <div class="meta"><span>#FF5A41</span><button data-copy="#FF5A41">Copy</button></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#E63E25"><span class="role">Primary hover</span><span class="ratio">Btn bottom</span></div>
+        <div class="meta"><span>#E63E25</span><button data-copy="#E63E25">Copy</button></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#D43820"><span class="role">Primary pressed</span><span class="ratio">Active</span></div>
+        <div class="meta"><span>#D43820</span><button data-copy="#D43820">Copy</button></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#6B7280"><span class="role">Muted</span><span class="ratio">Captions</span></div>
+        <div class="meta"><span>#6B7280</span><button data-copy="#6B7280">Copy</button></div>
+      </div>
+      <div class="swatch on-light">
+        <div class="chip" style="background:#F4F5F8"><span class="role">Card soft</span><span class="ratio">Btn 2nd</span></div>
+        <div class="meta"><span>#F4F5F8</span><button data-copy="#F4F5F8">Copy</button></div>
+      </div>
+      <div class="swatch on-light">
+        <div class="chip" style="background:#ECEEF3"><span class="role">Card pressed</span><span class="ratio">Active</span></div>
+        <div class="meta"><span>#ECEEF3</span><button data-copy="#ECEEF3">Copy</button></div>
+      </div>
+    </div>
+
+    <h2>Gradients</h2>
+    <div class="grad-grid">
+      <div class="grad" style="background:linear-gradient(#FF4529, #212121)">primary → secondary</div>
+      <div class="grad" style="background:linear-gradient(#FF4529, #B7C8D7); color:#040316">primary → accent</div>
+      <div class="grad" style="background:linear-gradient(#212121, #B7C8D7)">secondary → accent</div>
+      <div class="grad" style="background:radial-gradient(#FF4529, #212121)">primary → secondary (radial)</div>
+      <div class="grad" style="background:radial-gradient(#FF4529, #B7C8D7); color:#040316">primary → accent (radial)</div>
+      <div class="grad" style="background:radial-gradient(#212121, #B7C8D7)">secondary → accent (radial)</div>
+    </div>
+
+    <h2>60 / 30 / 10 ratio</h2>
+    <div class="ratio-bar">
+      <div style="flex:60; background:#FBFBFE; color:#040316; border-right:1px solid rgba(0,0,0,0.06)">60% Background</div>
+      <div style="flex:30; background:#212121; color:#fff">30% Secondary</div>
+      <div style="flex:10; background:#FF4529; color:#fff">10% Primary</div>
+    </div>
+    <div class="legend">
+      <span><span class="dot" style="background:#FBFBFE"></span>Dominant — page surfaces, white space</span>
+      <span><span class="dot" style="background:#212121"></span>Supporting — dark sections, footers</span>
+      <span><span class="dot" style="background:#FF4529"></span>Accent — CTAs, links, key moments</span>
+      <span><span class="dot" style="background:#B7C8D7"></span>Trim — borders, dividers (under 5%)</span>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Copied</div>
+
+  <script>
+    const toast = document.getElementById('toast');
+    document.querySelectorAll('button[data-copy]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const v = btn.getAttribute('data-copy');
+        try { await navigator.clipboard.writeText(v); } catch {}
+        toast.textContent = `Copied ${v}`;
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1200);
+      });
+    });
+  </script>
+</body>
+</html>

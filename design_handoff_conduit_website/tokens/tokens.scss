@@ -1,0 +1,83 @@
+// ============================================================
+// Conduit Systems — Design Tokens (SCSS)
+// v1.0.0  ·  Light theme default
+// ============================================================
+
+// ── Anchor colors ──
+$color-text:       #040316;
+$color-background: #FBFBFE;
+$color-primary:    #FF4529;
+$color-secondary:  #212121;
+$color-accent:     #B7C8D7;
+
+// ── State / semantic ──
+$color-primary-hover:    #E63E25;
+$color-primary-pressed:  #D43820;
+$color-primary-tint:     #FF5A41;
+$color-muted:            #6B7280;
+
+$color-surface-card:         #FFFFFF;
+$color-surface-card-soft:    #F4F5F8;
+$color-surface-card-pressed: #ECEEF3;
+
+$color-border-subtle:  rgba(183, 200, 215, 0.4);
+$color-border-default: rgba(183, 200, 215, 0.6);
+$color-border-strong:  rgba(33, 33, 33, 0.18);
+
+// ── Gradients ──
+$gradient-primary-secondary:  linear-gradient(#FF4529, #212121);
+$gradient-primary-accent:     linear-gradient(#FF4529, #B7C8D7);
+$gradient-secondary-accent:   linear-gradient(#212121, #B7C8D7);
+$gradient-btn-primary:        linear-gradient(180deg, #FF4529 0%, #E63E25 100%);
+$gradient-btn-primary-hover:  linear-gradient(180deg, #FF5A41 0%, #FF4529 100%);
+$gradient-btn-secondary:      linear-gradient(180deg, #FFFFFF 0%, #F4F5F8 100%);
+
+// ── Typography ──
+$font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+$font-sans:    'DM Sans', system-ui, sans-serif;
+$font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+$weight-regular: 400;
+$weight-medium:  500;
+$weight-bold:    700;
+
+// Type scale — perfect fourth, base 16px
+$fs-h1:    4.210rem;
+$fs-h2:    3.158rem;
+$fs-h3:    2.369rem;
+$fs-h4:    1.777rem;
+$fs-h5:    1.333rem;
+$fs-body:  1rem;
+$fs-small: 0.75rem;
+
+// ── Spacing ──
+$space: (
+  '0':  0,
+  '1':  0.25rem,
+  '2':  0.5rem,
+  '3':  0.75rem,
+  '4':  1rem,
+  '5':  1.25rem,
+  '6':  1.5rem,
+  '8':  2rem,
+  '10': 2.5rem,
+  '12': 3rem,
+  '16': 4rem,
+  '20': 5rem,
+  '24': 6rem,
+  '32': 8rem,
+);
+
+// ── Radius ──
+$radius-sm:   6px;
+$radius-md:   12px;
+$radius-lg:   18px;
+$radius-xl:   24px;
+$radius-2xl:  32px;
+$radius-pill: 9999px;
+
+// ── Motion ──
+$duration-fast: 200ms;
+$duration-base: 240ms;
+$duration-card: 320ms;
+$easing-out-expo: cubic-bezier(0.2, 0.7, 0.2, 1);

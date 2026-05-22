@@ -1,0 +1,13 @@
+/* Conduit Systems — combined font face stylesheet.
+   Imports both the display (Plus Jakarta Sans) and body (DM Sans) families
+   and exposes them via the same CSS custom properties used in production. */
+
+@import url('./plus-jakarta-sans/@font-face.css');
+@import url('./dm-sans/@font-face.css');
+
+:root {
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-display-variable: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-sans-variable:    'DM Sans Variable', 'DM Sans', system-ui, sans-serif;
+}

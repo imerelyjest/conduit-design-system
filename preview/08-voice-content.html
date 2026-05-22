@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Conduit — Voice & content</title>
+  <link rel="stylesheet" href="./shell.css" />
+  <style>
+    .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+    .pr {
+      border: 1px solid var(--border-subtle); border-radius: 18px;
+      padding: 22px; background: var(--bg-surface);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .pr .n { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fg-3); }
+    .pr h4 { font-family: var(--sans-display); font-weight: 700; font-size: 22px; letter-spacing: -0.01em; margin: 0; }
+    .pr p { font-size: 14px; line-height: 1.55; color: var(--fg-3); margin: 0; }
+
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-bottom: 32px; }
+    .col {
+      border-radius: 18px; padding: 24px 26px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .col.dont { background: rgba(212, 56, 32, 0.06); border: 1px solid rgba(212, 56, 32, 0.18); }
+    .col.do   { background: rgba(22, 163, 74, 0.05); border: 1px solid rgba(22, 163, 74, 0.20); }
+    .col h3 { font-family: var(--sans-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; margin: 0; display: flex; align-items: center; gap: 10px; }
+    .col h3 .b { font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; padding: 4px 8px; border-radius: 9999px; }
+    .col.dont h3 .b { background: #D43820; color: #fff; }
+    .col.do   h3 .b { background: #16A34A; color: #fff; }
+    .col ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .col li { display: flex; align-items: flex-start; gap: 10px; font-size: 14.5px; line-height: 1.5; color: var(--fg-1); }
+    .col li::before {
+      content: ""; width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
+      margin-top: 9px;
+    }
+    .col.dont li::before { background: #D43820; }
+    .col.do li::before { background: #16A34A; }
+
+    .specifics {
+      border-radius: 24px;
+      background: var(--bg-dark); color: var(--fg-on-dark);
+      padding: 36px 40px;
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; align-items: center;
+    }
+    .specifics, .specifics * { color: #ffffff !important; }
+    .specifics em, .specifics .stat .v em, .specifics h2 em { color: var(--fg-accent) !important; font-style: normal; }
+    .specifics .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 10px; }
+    .specifics h2 {
+      font-family: var(--sans-display); font-weight: 700;
+      font-size: 36px; line-height: 1.1; letter-spacing: -0.015em; margin: 0;
+    }
+    .specifics h2 em { color: var(--fg-accent); font-style: normal; }
+    .specifics .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .specifics .stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 18px 20px;
+    }
+    .specifics .stat .l2 { font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: #ffffff; }
+    .specifics .stat .v {
+      font-family: var(--sans-display); font-weight: 700;
+      font-size: 30px; letter-spacing: -0.015em; margin-top: 6px;
+    }
+    .specifics .stat .v em { color: var(--fg-accent); font-style: normal; }
+    .specifics .stat .d { font-size: 13px; color: #ffffff; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="cd-card">
+    <div class="cd-card__kicker"><span class="dot"></span> Brand · voice & content</div>
+    <h1 class="cd-card__title">Plainspoken. Specific. No exclamation points.</h1>
+    <p class="cd-card__subtitle">Conduit sounds like a contractor who's done this before — direct, confident, allergic to enterprise jargon. The work is the subject. Every claim has a number behind it.</p>
+
+    <div class="principles">
+      <div class="pr"><span class="n">01</span><h4>Direct</h4><p>Sentence-case headings. The verb is doing the work. We start clauses with subjects, not buzzwords.</p></div>
+      <div class="pr"><span class="n">02</span><h4>Specific</h4><p><b>30 minutes</b>, <b>36–48 hours</b>, <b>1–2 weeks</b>. Never "fast", "soon", "shortly", "quickly".</p></div>
+      <div class="pr"><span class="n">03</span><h4>Plainspoken</h4><p>"We build" beats "we leverage". "Around how you actually work" beats "tailored to your unique needs".</p></div>
+      <div class="pr"><span class="n">04</span><h4>Confident</h4><p>No hedging, no exclamation points, no "we'd love to". State the offer, name the timeframe, mean it.</p></div>
+    </div>
+
+    <div class="pair">
+      <div class="col dont">
+        <h3><span class="b">Don't</span>Buzzword stack</h3>
+        <ul>
+          <li>"Transformative CRM solutions for your business needs."</li>
+          <li>"We leverage cutting-edge AI to deliver next-generation value."</li>
+          <li>"Schedule a discovery consultation to begin your journey."</li>
+          <li>"Tailored solutions, unparalleled support, world-class outcomes!"</li>
+          <li>"Empowering small businesses through digital transformation."</li>
+        </ul>
+      </div>
+      <div class="col do">
+        <h3><span class="b">Do</span>Plainspoken</h3>
+        <ul>
+          <li>"Your sales pipeline, automated."</li>
+          <li>"AI-fast first drafts, finished by people who care."</li>
+          <li>"Book a 30-minute call. We reply within 48 hours."</li>
+          <li>"Built around how your business actually works."</li>
+          <li>"Custom software for owner-operated businesses in DFW."</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="specifics">
+      <div>
+        <div class="l">Specificity over promises</div>
+        <h2>Numbers, <em>not adjectives.</em></h2>
+        <p style="color: #ffffff; margin: 12px 0 0; max-width: 38ch;">Every commitment in our copy has a number behind it. If you can't put a unit on the end, rewrite the line.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="l2">Intro call</div><div class="v"><em>30</em> min</div><div class="d">No script. Real questions.</div></div>
+        <div class="stat"><div class="l2">First reply</div><div class="v"><em>36–48</em> h</div><div class="d">From the same person you talked to.</div></div>
+        <div class="stat"><div class="l2">First deliverable</div><div class="v"><em>1–2</em> wk</div><div class="d">Working software. Not a deck.</div></div>
+        <div class="stat"><div class="l2">Site launch</div><div class="v"><em>10–14</em> d</div><div class="d">From kickoff to live URL.</div></div>
+      </div>
+    </div>
+
+    <div class="cd-meta">
+      <span>Sentence case · headings</span>
+      <span>UPPERCASE · mono kickers only</span>
+      <span><b>0</b> exclamation points</span>
+      <span>Body ≤ 62 ch</span>
+    </div>
+  </div>
+</body>
+</html>

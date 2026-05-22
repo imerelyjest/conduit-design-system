@@ -1,0 +1,133 @@
+/* ============================================================
+   Conduit Systems — Design Tokens (CSS Custom Properties)
+   v1.0.0  ·  Light theme default
+   Drop this file into any project and import once at the root.
+   ============================================================ */
+
+:root {
+  /* ── Anchor colors (the five) ── */
+  --color-text:       #040316;
+  --color-background: #FBFBFE;
+  --color-primary:    #FF4529;
+  --color-secondary:  #212121;
+  --color-accent:     #B7C8D7;
+
+  /* ── State / semantic ── */
+  --color-primary-hover:    #E63E25;
+  --color-primary-pressed:  #D43820;
+  --color-primary-tint:     #FF5A41;
+  --color-muted:            #6B7280;
+
+  --color-surface-card:         #FFFFFF;
+  --color-surface-card-soft:    #F4F5F8;
+  --color-surface-card-pressed: #ECEEF3;
+
+  --color-border-subtle:  rgba(183, 200, 215, 0.4);
+  --color-border-default: rgba(183, 200, 215, 0.6);
+  --color-border-strong:  rgba(33, 33, 33, 0.18);
+
+  /* ── Gradients ── */
+  --gradient-primary-secondary:        linear-gradient(#FF4529, #212121);
+  --gradient-primary-accent:           linear-gradient(#FF4529, #B7C8D7);
+  --gradient-secondary-accent:         linear-gradient(#212121, #B7C8D7);
+  --gradient-primary-secondary-radial: radial-gradient(#FF4529, #212121);
+  --gradient-primary-accent-radial:    radial-gradient(#FF4529, #B7C8D7);
+  --gradient-secondary-accent-radial:  radial-gradient(#212121, #B7C8D7);
+  --gradient-btn-primary:              linear-gradient(180deg, #FF4529 0%, #E63E25 100%);
+  --gradient-btn-primary-hover:        linear-gradient(180deg, #FF5A41 0%, #FF4529 100%);
+  --gradient-btn-secondary:            linear-gradient(180deg, #FFFFFF 0%, #F4F5F8 100%);
+
+  /* ── Typography ── */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans:    'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-bold:    700;
+
+  /* Type scale — perfect fourth (ratio 1.333), base 16px */
+  --fs-h1:    4.210rem; /* 67.36px */
+  --fs-h2:    3.158rem; /* 50.56px */
+  --fs-h3:    2.369rem; /* 37.92px */
+  --fs-h4:    1.777rem; /* 28.48px */
+  --fs-h5:    1.333rem; /* 21.28px */
+  --fs-body:  1rem;     /* 16px    */
+  --fs-small: 0.75rem;  /* 12px    */
+
+  --fs-h1-fluid: clamp(2.5rem, 6vw + 1rem, 4.21rem);
+  --fs-h2-fluid: clamp(2rem, 4vw + 0.75rem, 3.158rem);
+
+  --lh-h1: 1.05;
+  --lh-h2: 1.10;
+  --lh-h3: 1.20;
+  --lh-h4: 1.25;
+  --lh-h5: 1.30;
+  --lh-body: 1.50;
+
+  --tracking-h1: -0.02em;
+  --tracking-h2: -0.015em;
+  --tracking-mono-label: 0.18em;
+
+  /* ── Spacing (4px base) ── */
+  --space-0:  0;
+  --space-1:  0.25rem;  /* 4px  */
+  --space-2:  0.5rem;   /* 8px  */
+  --space-3:  0.75rem;  /* 12px */
+  --space-4:  1rem;     /* 16px */
+  --space-5:  1.25rem;  /* 20px */
+  --space-6:  1.5rem;   /* 24px */
+  --space-8:  2rem;     /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+
+  /* ── Radius ── */
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   18px;
+  --radius-xl:   24px;
+  --radius-2xl:  32px;
+  --radius-pill: 9999px;
+
+  /* ── Elevation ── */
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-2: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-3: 0 4px 14px rgba(15, 23, 42, 0.12);
+  --shadow-4: 0 24px 50px -20px rgba(20, 25, 40, 0.18),
+              0 50px 100px -40px rgba(20, 25, 40, 0.18);
+  --shadow-primary-glow:        0 4px 12px rgba(255, 69, 41, 0.25);
+  --shadow-primary-glow-strong: 0 6px 20px rgba(255, 69, 41, 0.40);
+
+  /* ── Motion ── */
+  --duration-instant: 100ms;
+  --duration-fast:    200ms;
+  --duration-base:    240ms;
+  --duration-card:    320ms;
+  --duration-scene:   700ms;
+
+  --easing-out-expo: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --easing-in-out:   ease-in-out;
+
+  /* ── Layout ── */
+  --container-max:    1280px;
+  --container-narrow: 1024px;
+  --measure:          62ch;
+
+  --section-py-mobile:  4rem;
+  --section-py-desktop: 6rem;
+  --section-py-hero:    11rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast:    0ms;
+    --duration-base:    0ms;
+    --duration-card:    0ms;
+    --duration-scene:   0ms;
+  }
+}
